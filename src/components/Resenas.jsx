@@ -5,45 +5,48 @@ const Resenas = () => {
   const resenas = [
     {
       id: 1,
-      name: 'María González',
+      name: 'Dari Torrealba',
       rating: 5,
-      comment: 'Excelente experiencia! Las cabañas son muy cómodas y el paisaje es increíble. Definitivamente vamos a volver.',
-      date: 'Enero 2025',
+      comment: 'Muy buena experiencia! Anfitriones muy amables, todo súper limpio, la cabaña es un lujo!.',
+      date: 'Hace 8 semanas',
     },
     {
       id: 2,
-      name: 'Carlos Llanquileo',
+      name: 'Marcelo Solis',
       rating: 5,
-      comment: 'Un lugar mágico para desconectarse. Las tinajas son perfectas para relajarse. Muy recomendado!',
-      date: 'Diciembre 2024',
+      comment:
+        'Estuvimos ahí para nuestro paseo de amigos, arrendamos las 5 cabañas muy buenas y mucho mejor los anfitriones, muy buenas personas. Sus papás nos hicieron pan calentito todos los días y tortillas para traer devuelta. Aprovecho de dar mis bendiciones a toda la familia. Club Caza y Pesca los Delfines de Chillán.',
+      date: 'Hace 8 semanas',
     },
     {
       id: 3,
-      name: 'Ana Martínez',
+      name: 'FIGUEROA SAAVEDRA MATÍAS IGNACIO',
       rating: 5,
-      comment: 'Pasamos un fin de semana increíble en familia. Las cabañas tienen todo lo necesario y la atención es excelente.',
-      date: 'Febrero 2024',
+      comment: 'Hermosa experiencia♥️.',
+      date: 'Hace 11 semanas',
     },
     {
       id: 4,
-      name: 'Pedro Sánchez',
+      name: 'Gabriel J',
       rating: 5,
-      comment: 'El mejor lugar para escapar de la ciudad. Naturaleza pura y comodidad. Vamos a volver sin duda.',
-      date: 'Febrero 2025',
+      comment:
+        'Execelentes cabañas, a muy buen precio, bien cuidadas y equipadas, una muy agradable y calida acogida de parte de los dueños, muy atento a los detalles. Muy recomendado!.',
+      date: '6 abr 2021',
     },
     {
       id: 5,
-      name: 'Laura Fernández',
+      name: 'Betzabet Vergara Leiva',
       rating: 5,
-      comment: 'Las vistas son espectaculares y las cabañas muy acogedoras. Una experiencia que vamos a repetir.',
-      date: 'Enero 2025',
+      comment:
+        'Me encanto muy buena atención de los dueños muy amables el camping buenisimo los baños limpios y quizas se podria mejorar en cambios de almohadas y frazadas pero me encanto el lugar',
+      date: '26 feb 2021',
     },
     {
       id: 6,
-      name: 'Roberto López',
+      name: 'Paulina Nuñez',
       rating: 5,
-      comment: 'Perfecto para una escapada romántica. Las tinajas son increíbles, y la vista al paisaje es espectacular.',
-      date: 'Enero 2025',
+      comment: 'Muy acogedor, las personas excelente atención. Las cabañas todo equipado.',
+      date: '20 jul 2019',
     },
   ]
 
@@ -112,7 +115,7 @@ const Resenas = () => {
             ¿Tuviste una experiencia con nosotros? Comparte tu opinión
           </p>
           <a
-            href="https://wa.me/56938780736?text=Hola,%20quiero%20dejar%20una%20reseña%20sobre%20mi%20experiencia"
+            href="https://g.page/r/CSs9u8TzbKTqEBM/review"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-primary-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
