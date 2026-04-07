@@ -55,7 +55,7 @@ const Header = ({ isScrolled }) => {
             className="flex items-center space-x-2"
           >
             <img
-              src="/Logo cabañas.jpeg"
+              src="/Logo cabañas.png"
               alt="Cabañas Anyely Icalma"
               className="h-12 w-12 md:h-16 md:w-16 rounded-full object-cover"
             />

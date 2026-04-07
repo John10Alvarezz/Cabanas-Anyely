@@ -30,9 +30,9 @@ const Hero = () => {
             className="mb-8"
           >
             <img
-              src="/Logo cabañas.jpeg"
+              src="/Logo cabañas.png"
               alt="Cabañas Anyely Icalma"
-              className="h-32 w-32 md:h-48 md:w-48 mx-auto rounded-full object-cover shadow-2xl border-4 border-white"
+              className="h-40 w-40 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 mx-auto object-contain drop-shadow-2xl"
               loading="eager"
             />
           </motion.div>

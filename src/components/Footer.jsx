@@ -19,7 +19,7 @@ const Footer = () => {
           >
             <div className="flex items-center gap-2 mb-4">
               <img
-                src="/Logo cabañas.jpeg"
+                src="/Logo cabañas.png"
                 alt="Cabañas Anyely Icalma"
                 className="h-12 w-12 rounded-full object-cover"
               />
