@@ -19,7 +19,7 @@ const Footer = () => {
           >
             <div className="flex items-center gap-2 mb-4">
               <img
-                src="/Logo cabañas.png"
+                src="/logo-cabanas.png"
                 alt="Cabañas Anyely Icalma"
                 className="h-12 w-12 rounded-full object-cover"
               />
@@ -45,7 +45,7 @@ const Footer = () => {
                 className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
               >
                 <Mail size={18} />
-                <span>cabanasanyely@gmail.com</span>
+                <span>cabanasanyelyicalma@gmail.com</span>
               </a>
             </div>
           </motion.div>
@@ -63,9 +63,11 @@ const Footer = () => {
                 { name: 'Inicio', href: '#inicio' },
                 { name: 'Cabañas', href: '#cabanas' },
                 { name: 'Tinajas', href: '#tinajas' },
+                { name: 'Cotizador', href: '#cotizador' },
                 { name: 'Ubicación', href: '#ubicacion' },
                 { name: 'Quiénes Somos', href: '#quienes-somos' },
                 { name: 'Reseñas', href: '#resenas' },
+                { name: 'Preguntas Frecuentes', href: '#faq' },
               ].map((link) => (
                 <li key={link.name}>
                   <a

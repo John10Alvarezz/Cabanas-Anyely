@@ -30,7 +30,7 @@ const Hero = () => {
             className="mb-8"
           >
             <img
-              src="/Logo cabañas.png"
+              src="/logo-cabanas.png"
               alt="Cabañas Anyely Icalma"
               className="h-40 w-40 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 mx-auto object-contain drop-shadow-2xl"
               loading="eager"
@@ -51,7 +51,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex items-center justify-center gap-2 text-gray-600 mb-8"
+            className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-300 mb-8"
           >
             <MapPin size={20} className="text-primary-600" />
             <p className="text-lg md:text-xl">Sector de Icalma, Lonquimay, Chile</p>
@@ -61,7 +61,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg md:text-xl text-gray-700 mb-12 max-w-2xl mx-auto text-balance"
+            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-12 max-w-2xl mx-auto text-balance"
           >
             Disfruta de la naturaleza en su máximo esplendor. 
             Relájate en nuestras cómodas cabañas rodeadas de paisajes increíbles.
@@ -73,17 +73,15 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <a
-              href="https://wa.me/56938780736?text=Hola,%20me%20gustaría%20reservar%20una%20cabaña"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => scrollToSection('#cotizador')}
               className="bg-primary-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              Reservar Ahora
-            </a>
+              Cotizar Estadía
+            </button>
             <button
               onClick={() => scrollToSection('#cabanas')}
-              className="flex items-center gap-2 text-primary-600 font-semibold text-lg hover:text-primary-700 transition-colors"
+              className="flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold text-lg hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
             >
               Ver Cabañas
               <ArrowDown size={20} />

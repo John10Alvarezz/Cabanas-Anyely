@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { MapPin, Navigation, Camera } from 'lucide-react'
+import WeatherWidget from './WeatherWidget'
 
 const Ubicacion = () => {
   return (
@@ -94,6 +95,11 @@ const Ubicacion = () => {
           </motion.div>
         </div>
 
+        {/* Widget del Clima en Icalma */}
+        <div className="mt-12 max-w-3xl mx-auto">
+          <WeatherWidget />
+        </div>
+
         {/* Galería de Paisajes */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -107,10 +113,10 @@ const Ubicacion = () => {
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              '/paisajes/paisaje1.jpg',
-              '/paisajes/paisaje2.jpg',
-              '/paisajes/paisaje3.jpg',
-              '/paisajes/paisaje4.jpg',
+              '/paisajes/paisaje1.webp',
+              '/paisajes/paisaje2.webp',
+              '/paisajes/paisaje3.webp',
+              '/paisajes/paisaje4.webp',
             ].map((imagePath, index) => (
               <motion.div
                 key={index}

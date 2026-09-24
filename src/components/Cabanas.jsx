@@ -1,49 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Bed, Users, Wifi, Car, UtensilsCrossed, ChevronLeft, ChevronRight, X, Bath, Thermometer, Mountain } from 'lucide-react'
+import { cabanas } from '../data/lodgingData'
 
 const Cabanas = () => {
   const [selectedCabana, setSelectedCabana] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
-  const cabanas = [
-    {
-      id: 1,
-      name: 'Cabaña 1',
-      description: 'Cabaña acogedora con vista al paisaje natural. Perfecta para grupos familiares o grupos de amigos.',
-      capacity: 6,
-      features: ['Estacionamiento', 'Cocina equipada', 'Baño', 'Terraza','Calefacción', 'Televisión'],
-      images: ['/cabañas/cabana1-1.jpg', '/cabañas/cabana1-2.jpg', '/cabañas/cabana1-3.jpg', '/cabañas/cabana1-4.jpg', '/cabañas/cabana1-5.jpg', '/cabañas/cabana1-6.jpg'],
-      price: 'Desde $70.000/noche',
-    },
-    {
-      id: 2,
-      name: 'Cabaña 2',
-      description: 'La más grande y cómoda. Perfecta para eventos familiares o grupos grandes.',
-      capacity: '10-12',
-      features: ['Estacionamiento', 'Cocina equipada', 'Terraza', '2 baños', 'Calefacción', 'Televisión'],
-      images: ['/cabañas/cabana2-1.jpg', '/cabañas/cabana2-2.jpg', '/cabañas/cabana2-3.jpg', '/cabañas/cabana2-4.jpg', '/cabañas/cabana2-5.jpg', '/cabañas/cabana2-6.jpg', '/cabañas/cabana2-7.jpg', '/cabañas/cabana2-8.jpg'],
-      price: 'Desde $120.000/noche',
-    },
-    {
-      id: 3,
-      name: 'Cabaña 3',
-      description: 'Cabaña acogedora con vista al paisaje natural. Perfecta para grupos familiares o grupos de amigos.',
-      capacity: 6,
-      features: ['Estacionamiento', 'Cocina equipada', 'Terraza', 'Baño', 'Calefacción', 'Televisión'],
-      images: ['/cabañas/cabana3-1.jpg', '/cabañas/cabana3-2.jpg', '/cabañas/cabana3-3.jpg', '/cabañas/cabana3-4.jpg', '/cabañas/cabana3-5.jpg'],
-      price: 'Desde $70.000/noche',
-    },
-    {
-      id: 4,
-      name: 'Cabaña 4',
-      description: 'Cabaña acogedora con vista al paisaje natural. Perfecta para grupos familiares o grupos de amigos.',
-      capacity: 6,
-      features: ['Estacionamiento', 'Cocina equipada', 'Terraza', 'Baño', 'Calefacción', 'Televisión'],
-      images: ['/cabañas/cabana4-1.jpg', '/cabañas/cabana4-2.jpg', '/cabañas/cabana4-3.jpg', '/cabañas/cabana4-4.jpg', '/cabañas/cabana4-5.jpg'],
-      price: 'Desde $70.000/noche',
-    },
-  ]
 
   const openModal = (cabana) => {
     setSelectedCabana(cabana)

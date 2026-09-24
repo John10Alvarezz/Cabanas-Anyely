@@ -1,22 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Droplets, ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { tinajas } from '../data/lodgingData'
 
 const Tinajas = () => {
   const [selectedTinaja, setSelectedTinaja] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
-  const tinajas = [
-    {
-      id: 1,
-      name: 'Tinaja',
-      description: 'Disfruta de un relajante baño en nuestra tinaja con agua termal. Perfecto para relajarse después de un día de actividades.',
-      capacity: 'Hasta 6 personas',
-      temperature: 'Temperatura cálida',
-      images: ['/tinajas/tinaja1-1.jpg', '/tinajas/tinaja1-2.jpg'],
-      features: ['Agua temperada', 'Vista al paisaje', 'Iluminación nocturna'],
-    },
-  ]
 
   const openModal = (tinaja) => {
     setSelectedTinaja(tinaja)
@@ -99,7 +88,12 @@ const Tinajas = () => {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{tinaja.name}</h3>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{tinaja.name}</h3>
+                  <span className="text-xs font-semibold bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 px-3 py-1 rounded-full border border-amber-300/40">
+                    Servicio adicional
+                  </span>
+                </div>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">{tinaja.description}</p>
                 <div className="space-y-2 mb-4">
                   <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
@@ -110,6 +104,10 @@ const Tinajas = () => {
                     <Droplets size={18} className="text-primary-600 dark:text-primary-400" />
                     <span>{tinaja.temperature}</span>
                   </div>
+                </div>
+                <div className="pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between">
+                  <span className="text-xs text-gray-500 dark:text-gray-400">Cobro aparte por sesión</span>
+                  <span className="text-sm font-bold text-primary-600 dark:text-primary-400">Consultar valor</span>
                 </div>
               </div>
             </motion.div>
@@ -216,13 +214,17 @@ const Tinajas = () => {
                     </div>
                   </div>
 
+                  <div className="mb-6 p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-200 text-sm">
+                    <strong>Nota importante:</strong> La tinaja es un servicio adicional independiente con cobro aparte por sesión (no está incluida con el arriendo de la cabaña). Se prepara a leña de forma exclusiva con 4 a 5 horas de anticipación.
+                  </div>
+
                   <a
-                    href={`https://wa.me/56938780736?text=Hola,%20me%20gustaría%20reservar%20${selectedTinaja.name}`}
+                    href={`https://wa.me/56938780736?text=Hola,%20me%20gustaría%20consultar%20por%20la%20${selectedTinaja.name}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full bg-primary-600 text-white text-center py-4 rounded-lg font-semibold text-lg hover:bg-primary-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                   >
-                    Reservar {selectedTinaja.name}
+                    Consultar Disponibilidad de {selectedTinaja.name}
                   </a>
                 </div>
               </div>

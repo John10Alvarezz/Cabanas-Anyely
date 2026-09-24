@@ -11,9 +11,11 @@ const Header = ({ isScrolled }) => {
     { name: 'Inicio', href: '#inicio' },
     { name: 'Cabañas', href: '#cabanas' },
     { name: 'Tinajas', href: '#tinajas' },
+    { name: 'Cotizar', href: '#cotizador' },
     { name: 'Ubicación', href: '#ubicacion' },
     { name: 'Quiénes Somos', href: '#quienes-somos' },
     { name: 'Reseñas', href: '#resenas' },
+    { name: 'FAQ', href: '#faq' },
     { name: 'Contacto', href: '#contacto' },
   ]
 
@@ -55,7 +57,7 @@ const Header = ({ isScrolled }) => {
             className="flex items-center space-x-2"
           >
             <img
-              src="/Logo cabañas.png"
+              src="/logo-cabanas.png"
               alt="Cabañas Anyely Icalma"
               className="h-12 w-12 md:h-16 md:w-16 rounded-full object-cover"
             />
