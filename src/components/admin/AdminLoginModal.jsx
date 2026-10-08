@@ -1,16 +1,17 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Lock, KeyRound, X, AlertCircle, ShieldAlert, ShieldCheck, Clock } from 'lucide-react'
-import { getAdminPin, getSecurityStatus, recordFailedAttempt, resetFailedAttempts } from '../../services/reservationService'
+import { getAdminPin, fetchAdminPin, getSecurityStatus, recordFailedAttempt, resetFailedAttempts } from '../../services/reservationService'
 
 const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
   const [pin, setPin] = useState('')
+  const [expectedPin, setExpectedPin] = useState(getAdminPin())
   const [errorMsg, setErrorMsg] = useState('')
   const [shake, setShake] = useState(false)
   const [securityStatus, setSecurityStatus] = useState({ locked: false, remainingSeconds: 0, attemptsLeft: 5 })
   const inputRef = useRef(null)
 
-  // Actualizar estado de seguridad
+  // Actualizar estado de seguridad y consultar PIN más reciente de Supabase
   useEffect(() => {
     if (isOpen) {
       setPin('')
@@ -20,6 +21,10 @@ const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
       if (!sec.locked) {
         setTimeout(() => inputRef.current?.focus(), 150)
       }
+      // Consultar el PIN actualizado en la nube
+      fetchAdminPin().then((p) => {
+        if (p) setExpectedPin(p)
+      })
     }
   }, [isOpen])
 
@@ -42,11 +47,22 @@ const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
 
   if (!isOpen) return null
 
-  const handleVerify = (inputPin) => {
+  const handleVerify = async (inputPin) => {
     if (securityStatus.locked) return
 
-    const currentPin = getAdminPin()
-    if (inputPin === currentPin) {
+    // Verificar primero con el PIN en memoria/local
+    let valid = (inputPin === expectedPin || inputPin === getAdminPin())
+
+    // Si no coincide, consultar Supabase en vivo por si se cambió desde otro dispositivo hace segundos
+    if (!valid) {
+      const freshPin = await fetchAdminPin()
+      if (inputPin === freshPin) {
+        setExpectedPin(freshPin)
+        valid = true
+      }
+    }
+
+    if (valid) {
       resetFailedAttempts()
       setErrorMsg('')
       onLoginSuccess()

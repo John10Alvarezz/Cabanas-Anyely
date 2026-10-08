@@ -7,16 +7,59 @@ const ATTEMPTS_KEY = 'anyely_admin_login_attempts'
 const MAX_ATTEMPTS = 5
 const LOCKOUT_DURATION_MS = 60 * 1000 // 60 segundos de bloqueo tras 5 intentos fallidos
 
-// Obtener o configurar PIN
+// Obtener PIN local inmediato
 export const getAdminPin = () => {
   return localStorage.getItem(PIN_KEY) || DEFAULT_PIN
 }
 
-export const setAdminPin = (newPin) => {
+// Obtener PIN sincronizado desde Supabase (con respaldo local)
+export const fetchAdminPin = async () => {
+  const client = getSupabaseClient()
+  if (client) {
+    try {
+      const { data, error } = await client
+        .from('configuracion')
+        .select('valor')
+        .eq('clave', 'admin_pin')
+        .maybeSingle()
+
+      if (!error && data && data.valor) {
+        localStorage.setItem(PIN_KEY, data.valor)
+        return data.valor
+      }
+    } catch (e) {
+      console.warn('Error obteniendo PIN desde Supabase:', e)
+    }
+  }
+  return localStorage.getItem(PIN_KEY) || DEFAULT_PIN
+}
+
+// Guardar PIN localmente y sincronizar en Supabase para todos los dispositivos
+export const setAdminPin = async (newPin) => {
   if (!newPin || newPin.trim().length < 4) {
     throw new Error('El PIN debe tener al menos 4 dígitos')
   }
-  localStorage.setItem(PIN_KEY, newPin.trim())
+  const cleanPin = newPin.trim()
+  localStorage.setItem(PIN_KEY, cleanPin)
+
+  const client = getSupabaseClient()
+  if (client) {
+    try {
+      const { error } = await client
+        .from('configuracion')
+        .upsert({ clave: 'admin_pin', valor: cleanPin, updated_at: new Date().toISOString() })
+
+      if (error) {
+        console.warn('Tabla configuracion no disponible en Supabase:', error)
+        return { ok: true, synced: false, error: error.message }
+      }
+      return { ok: true, synced: true }
+    } catch (e) {
+      console.warn('Error guardando PIN en Supabase:', e)
+      return { ok: true, synced: false }
+    }
+  }
+  return { ok: true, synced: false }
 }
 
 // Control de seguridad y bloqueo por fuerza bruta

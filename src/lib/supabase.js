@@ -122,4 +122,23 @@ ON public.reservas
 FOR ALL 
 USING (true) 
 WITH CHECK (true);
+
+-- Tabla para sincronizar el PIN y configuraciones globales en todos los dispositivos:
+CREATE TABLE IF NOT EXISTS public.configuracion (
+  clave TEXT PRIMARY KEY,
+  valor TEXT NOT NULL,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.configuracion ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Permitir todo a usuarios anon en configuracion" 
+ON public.configuracion 
+FOR ALL 
+USING (true) 
+WITH CHECK (true);
+
+INSERT INTO public.configuracion (clave, valor)
+VALUES ('admin_pin', '1234')
+ON CONFLICT (clave) DO NOTHING;
 `

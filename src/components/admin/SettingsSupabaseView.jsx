@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { KeyRound, Database, Download, Upload, CheckCircle2, AlertCircle, Copy, Check, Shield, RefreshCw } from 'lucide-react'
-import { getAdminPin, setAdminPin, exportReservationsJSON, importReservationsJSON } from '../../services/reservationService'
+import { getAdminPin, fetchAdminPin, setAdminPin, exportReservationsJSON, importReservationsJSON } from '../../services/reservationService'
 import { getSupabaseCredentials, saveSupabaseCredentials, testSupabaseConnection, SUPABASE_SQL_SCHEMA } from '../../lib/supabase'
 
 const SettingsSupabaseView = ({ onDataReload }) => {
@@ -22,6 +22,9 @@ const SettingsSupabaseView = ({ onDataReload }) => {
   const [importStatus, setImportStatus] = useState(null)
 
   useEffect(() => {
+    fetchAdminPin().then((p) => {
+      if (p) setCurrentPinState(p)
+    })
     const creds = getSupabaseCredentials()
     setSupabaseUrl(creds.url || '')
     setSupabaseKey(creds.anonKey || '')
@@ -30,7 +33,7 @@ const SettingsSupabaseView = ({ onDataReload }) => {
     }
   }, [])
 
-  const handleChangePin = (e) => {
+  const handleChangePin = async (e) => {
     e.preventDefault()
     if (newPin.length < 4) {
       setPinMessage({ text: 'El PIN debe tener al menos 4 números', type: 'error' })
@@ -41,12 +44,19 @@ const SettingsSupabaseView = ({ onDataReload }) => {
       return
     }
     try {
-      setAdminPin(newPin)
+      const res = await setAdminPin(newPin)
       setCurrentPinState(newPin)
       setNewPin('')
       setConfirmPin('')
-      setPinMessage({ text: '¡PIN actualizado exitosamente!', type: 'success' })
-      setTimeout(() => setPinMessage({ text: '', type: '' }), 4000)
+      if (res && res.synced) {
+        setPinMessage({ text: '¡PIN actualizado y sincronizado en la nube para todos tus dispositivos!', type: 'success' })
+      } else {
+        setPinMessage({
+          text: '¡PIN guardado! Para que se sincronice en tu celular y otros dispositivos, recuerda ejecutar el script SQL de abajo en Supabase.',
+          type: 'warning'
+        })
+      }
+      setTimeout(() => setPinMessage({ text: '', type: '' }), 8000)
     } catch (err) {
       setPinMessage({ text: err.message, type: 'error' })
     }
