@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import { Phone, Mail, MapPin, Instagram, MessageCircle, ArrowUp, Facebook } from 'lucide-react'
+import { Phone, Mail, MapPin, Instagram, MessageCircle, ArrowUp, Facebook, Lock } from 'lucide-react'
 
-const Footer = () => {
+const Footer = ({ onOpenAdmin }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -110,7 +110,7 @@ const Footer = () => {
                 href="https://www.instagram.com/cabanas_anyely_icalma?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg transition-colors font-semibold"
+                className="flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:from-pink-700 text-white px-6 py-3 rounded-lg transition-colors font-semibold"
               >
                 <Instagram size={24} />
                 <span>Instagram</span>
@@ -137,17 +137,31 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-400 text-sm text-center md:text-left">
             © {new Date().getFullYear()} Cabañas Anyely Icalma. Todos los derechos reservados.
           </p>
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-          >
-            <span className="text-sm">Volver arriba</span>
-            <ArrowUp size={20} />
-          </button>
+
+          <div className="flex items-center gap-4">
+            {onOpenAdmin && (
+              <button
+                onClick={onOpenAdmin}
+                className="flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-white bg-gray-800 hover:bg-gray-750 active:scale-95 px-3.5 py-2 rounded-xl border border-gray-700 transition-all shadow-xs"
+                title="Acceso al Panel de Administración de Reservas"
+              >
+                <Lock size={14} className="text-primary-400" />
+                <span>Portal Administración</span>
+              </button>
+            )}
+
+            <button
+              onClick={scrollToTop}
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+            >
+              <span className="text-sm">Volver arriba</span>
+              <ArrowUp size={20} />
+            </button>
+          </div>
         </div>
       </div>
     </footer>
